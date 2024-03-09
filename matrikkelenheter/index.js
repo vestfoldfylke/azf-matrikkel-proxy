@@ -39,7 +39,7 @@ module.exports = async function (context, req) {
   }
 
   try {
-    return { status: 200, body: {units, koordinatsystemKodeId: req.body.koordinatsystemKodeId} }
+    return { status: 200, body: { units, koordinatsystemKodeId: req.body.koordinatsystemKodeId } }
   } catch (error) {
     return { status: 500, body: error }
   }
