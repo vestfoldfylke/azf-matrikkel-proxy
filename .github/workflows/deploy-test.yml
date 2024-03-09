@@ -4,7 +4,6 @@
 name: Build and deploy Node.js project to Azure Function App - PROD
 
 on:
-  release:
     push:
     branches:
       - main
