@@ -32,15 +32,15 @@ module.exports = async function (context, req) {
   const result = await client.getMatrikkelPolygon(req, req.body.polygon)
 
   let units
-  if(result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return !== undefined) {
+  if (result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return !== undefined) {
     units = result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item.map(unit => unit.value)
-  } else{
+  } else {
     units = result[0].findMatrikkelenheterResponse?.return?.item.map(unit => unit.value)
   }
 
   // const units = result[0].findMatrikkelenheterResponse?.return?.item.map(unit => unit.value)
-  
-  if(units === undefined || units.length < 0) throw new Error('Fant ingen enheter innenfor polygonet')
+
+  if (units === undefined || units.length < 0) throw new Error('Fant ingen enheter innenfor polygonet')
 
   try {
     return { status: 200, body: { units, koordinatsystemKodeId: req.body.koordinatsystemKodeId } }
