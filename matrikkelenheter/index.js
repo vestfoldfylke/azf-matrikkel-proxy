@@ -33,7 +33,13 @@ module.exports = async function (context, req) {
 
   let units
   if (result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return !== undefined) {
-    units = result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item.map(unit => unit.value)
+    // If result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item is not an array make it an array (it should always be an array, but sometimes it's not :D)
+    if (!Array.isArray(result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item)) {
+      units = result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item?.value === undefined ? '' : [result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item?.value] // Denne kan være undefined, håndter det returns [ undefined ]
+    } else {
+      units = result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item.map(unit => unit.value)
+    }
+    console.log(units)
   } else {
     units = result[0].findMatrikkelenheterResponse?.return?.item.map(unit => unit.value)
   }
