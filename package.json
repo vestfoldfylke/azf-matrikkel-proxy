@@ -1,6 +1,6 @@
 {
   "name": "",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "",
   "scripts": {
     "start": "func start",
@@ -9,12 +9,12 @@
   "dependencies": {
     "@azure/msal-node": "^2.6.4",
     "@vtfk/logger": "^6.1.0",
+    "@vtfk/sjablong": "^1.0.2",
     "axios": "^1.6.7",
     "node-cache": "^5.1.2",
     "node-fetch": "^2.6.7",
     "npm": "^10.4.0",
     "prettify-xml": "^1.2.0",
-    "sjablong": "^1.0.33",
     "xml-query": "^1.5.0",
     "xml-reader": "^2.4.3",
     "xml2js": "^0.6.2"

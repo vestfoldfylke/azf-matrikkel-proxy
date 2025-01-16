@@ -1,6 +1,6 @@
 const { logConfig } = require('@vtfk/logger')
 const TemplateClient = require('../lib/TemplateClient/TemplateClient')
-const Sjablong = require('sjablong') // Replace placeholders in templates
+const Sjablong = require('@vtfk/sjablong') // Replace placeholders in templates
 const { matrikkelApi } = require('../config')
 const { MatrikkelClient } = require('../lib/KartverketMatrikkelAPI/MatrikkelClient')
 const { flattenObject } = require('../lib/helpers/flattenObject')
@@ -38,7 +38,7 @@ module.exports = async function (context, req) {
   //     throw new Error('Fant ingen enheter innenfor polygonet')
   //   }
   // console.log(store[0]["getObjectsResponse"]["return"].item.map(item => item.eierforhold))
-
+  
   store = flattenObject(store)
   try {
     return { status: 200, body: { store } }
