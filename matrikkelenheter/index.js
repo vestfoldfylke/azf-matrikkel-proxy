@@ -1,6 +1,6 @@
 const { logConfig } = require('@vtfk/logger')
 const TemplateClient = require('../lib/TemplateClient/TemplateClient')
-const Sjablong = require('sjablong') // Replace placeholders in templates
+const Sjablong = require('@vtfk/sjablong') // Replace placeholders in templates
 const { matrikkelApi } = require('../config')
 const { MatrikkelClient } = require('../lib/KartverketMatrikkelAPI/MatrikkelClient')
 
@@ -30,7 +30,7 @@ module.exports = async function (context, req) {
   const client = new MatrikkelClient(matrikkelApi.MATRIKKELAPI_USERNAME, matrikkelApi.MATRIKKELAPI_PASSWORD, 'matrikkelapi/wsapi/v1/MatrikkelenhetServiceWS')
 
   const result = await client.getMatrikkelPolygon(req, req.body.polygon)
-
+  
   let units
   if (result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return !== undefined) {
     // If result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item is not an array make it an array (it should always be an array, but sometimes it's not :D)
