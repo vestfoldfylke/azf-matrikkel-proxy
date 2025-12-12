@@ -6,6 +6,7 @@
 		"lint": "biome check",
 		"lint:fix": "biome check --write",
 		"start": "func start",
+		"start:2": "func start --port=7072",
 		"test": "npm run lint"
 	},
 	"engines": {

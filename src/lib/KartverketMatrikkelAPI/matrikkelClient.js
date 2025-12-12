@@ -565,6 +565,19 @@ class MatrikkelClient {
     return await this.makeRequest(req, requestTemplate);
   }
 
+  arrayifyStoreResponseBody(body) {
+    if (!Array.isArray(body) || body.length === 0 || body.length > 1 || !body[0]["soap:Body"]) {
+      return body;
+    }
+
+    if (Array.isArray(body[0]["soap:Body"].return)) {
+      return body;
+    }
+
+    body[0]["soap:Body"].return = [body[0]["soap:Body"].return];
+    return body;
+  }
+
   getReturnTypeCountObject(body) {
     if (!Array.isArray(body)) {
       logger.error("Body is not an array. Returning empty object.");

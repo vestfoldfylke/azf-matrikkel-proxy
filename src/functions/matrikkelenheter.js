@@ -32,7 +32,7 @@ const matrikkelEnheter = async (req) => {
 
     let units;
     if (result[0]["soap:Envelope"]?.["soap:Body"].findMatrikkelenheterResponse.return !== undefined) {
-      // If result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item is not an array make it an array (it should always be an array, but sometimes it's not :D)
+      // NOTE: result[0]['soap:Envelope']?.['soap:Body'].findMatrikkelenheterResponse.return.item will be an object IF only one item is returned, otherwise it will be an array
       if (!Array.isArray(result[0]["soap:Envelope"]?.["soap:Body"].findMatrikkelenheterResponse.return.item)) {
         units =
           result[0]["soap:Envelope"]?.["soap:Body"].findMatrikkelenheterResponse.return.item?.value === undefined

@@ -27,7 +27,7 @@ const storeService = async (req) => {
     const client = new MatrikkelClient(matrikkelApi.MATRIKKELAPI_USERNAME, matrikkelApi.MATRIKKELAPI_PASSWORD, "matrikkelapi/wsapi/v1/StoreServiceWS");
     const store = await client.callStoreService(req, requestBody.items);
 
-    const flattStore = flattenObject(store);
+    const flattStore = client.arrayifyStoreResponseBody(flattenObject(store));
     const returnTypeCountObject = client.getReturnTypeCountObject(flattStore);
     logger.info("Got data from matrikkel StoreServiceWS: {@Data}", returnTypeCountObject);
 
